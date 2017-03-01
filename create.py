@@ -5,9 +5,10 @@
 import os
 import random
 import string
+import sys
 import math
 
-def create():
+def create(num_imgs=None):
     license_type = ["win", "RH", "deb", "suse", "bsd", "other"]
     # build_flag = index of license type
     architecture = ["vec", "ep", "simd", "sisd", "mimd", "misd", "mpmd", "spmd"]
@@ -15,7 +16,7 @@ def create():
     # kernel_id = 23 * index
     # ram_id = 71 * index
     snapshot = ["true", "false"]
-    for i in range (1, 15):
+    for i in range (1, num_imgs):
         idx_lic = random.randint(0, 5)
         idx_arch = random.randint(0, 7)
         # idx_snapshot =  
@@ -26,4 +27,7 @@ def create():
         os.system(command)
 
 if __name__ == '__main__':
-    create()
+    num_imgs = None
+    if sys.argv[1]:
+        num_imgs = int(sys.argv[1])
+    create(num_imgs=num_imgs)
